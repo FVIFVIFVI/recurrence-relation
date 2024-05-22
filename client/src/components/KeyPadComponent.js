@@ -19,7 +19,7 @@ class KeyPadComponent extends Component {
                     <button name="3" onClick={e => this.props.onClick(e.target.name)}>3</button>
                     <button name="+" onClick={e => this.props.onClick(e.target.name)}>+</button>
                     <button name="√" onClick={e => this.props.onClick(e.target.name)}>√</button>
-                    <button name="N" onClick={e => this.props.onClick(e.target.name)}>N</button>
+                    <button name="n" onClick={e => this.props.onClick(e.target.name)}>n</button>
                 </div>
                 <div className="button-row">
                     <button name="4" onClick={e => this.props.onClick(e.target.name)}>4</button>
@@ -35,7 +35,7 @@ class KeyPadComponent extends Component {
                     <button name="9" onClick={e => this.props.onClick(e.target.name)}>9</button>
                     <button name="*" onClick={e => this.props.onClick(e.target.name)}>x</button>
                     <button name="log" onClick={e => this.props.onClick(e.target.name)}>log</button>
-                    <button name="o" onClick={e => this.props.onClick(e.target.name)}></button>
+                    <button name="send" onClick={e => this.props.onClick(e.target.name)}>send</button>
                 </div>
                 <div className="button-row">
                     <button name="." onClick={e => this.props.onClick(e.target.name)}>.</button>
@@ -43,7 +43,7 @@ class KeyPadComponent extends Component {
                     <button name="=" onClick={e => this.props.onClick(e.target.name)}>=</button>
                     <button name="/" onClick={e => this.props.onClick(e.target.name)}>÷</button>
                     <button name="ln" onClick={e => this.props.onClick(e.target.name)}>ln</button>
-                    <button name="O" onClick={e => this.props.onClick(e.target.name)}>O</button>
+                    <button name="11" onClick={e => this.props.onClick(e.target.name)}>11</button>
                 </div>
             </div>
         );

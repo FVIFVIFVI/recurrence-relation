@@ -11,7 +11,7 @@ def inqulty(f1, f2):
     if limit_seq(a1, n) == oo:
         return 1
     else:
-        # לטפל במקרה של קבוע גדול מ-1
+        # לטפל במקרה של קבוע גדול מ1
         return 3
 
 def get_exponent(expr):
@@ -38,6 +38,7 @@ def const1(f):
     if isinstance(expanded_expr, Mul):
         factors = expanded_expr.as_ordered_factors()
     else:
+        print(f)
         return f
     for i in range(len(factors)):
         try:
@@ -47,13 +48,41 @@ def const1(f):
             continue
     c = 1
     for i in factors:
-        c *= i
+        c = c * i
     return c
 
+def Factorization4(f):
+    expanded_expr = expand(f)
+    if isinstance(expanded_expr, Mul):
+        factors = expanded_expr.as_ordered_factors()
+        return factors[0]
+    else:
+        return f
+
 def series(f):
-    return f
+    expanded_expr = expand(f)
+    if isinstance(expanded_expr, Add):
+        factors = expanded_expr.args
+    else:
+        factors = [1]
+        factors[0] = f
+
+    c = factors[0]
+    for i in range(1, len(factors)):
+        aa = inqulty(factors[i], c)
+        if aa == 1:
+            c = factors[i]
+    return c
+
+series(log(n))
+
+n = sp.symbols('n')
 
 def master(a, b, f):
+    ##b1=Factorization1(recurion)
+    ##b=b1[1]
+    print(8888)
+
     f1 = series(f)
     f2 = const1(f1)
     if a >= 1:
@@ -64,7 +93,7 @@ def master(a, b, f):
         if win == 1:
             return n ** confrecrtion
         if win == 2:
-            a77 = Factorization(f2)
+            a77 = Factorization4(f2)
             bb = inqulty(n ** confrecrtion, a77)
             if bb == 2:
                 return f2
@@ -74,6 +103,4 @@ def master(a, b, f):
             return f2 * log(n)
     else:
         print("לא נתמך")
-
-
 
