@@ -42,7 +42,7 @@ function Calculator() {
             if (data.error) {
                 setResult("Error"); // Display error if server returns an error
             } else {
-                setResult(data.result); // Display the computed result from server
+                setInput(data.result); // Display the computed result from server
             }
         })
         .catch(error => {
@@ -59,7 +59,7 @@ function Calculator() {
                     value={input} 
                     onChange={handleChange} // Allow user to change the input
                 />
-                <div className="result">{result}</div>
+             
             </div>
             <div className="button">
                 <div className="button-row">
