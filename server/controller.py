@@ -1,6 +1,6 @@
 import re
 from sympy import sympify, symbols
-from server.master import *
+from master import *
 
 n = symbols('n')
 

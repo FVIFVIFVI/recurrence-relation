@@ -9,6 +9,10 @@ function Calculator() {
         setInput(input + value);
     };
 
+    const handleBackspace = () => {
+        setInput(input.slice(0, -1));
+    };
+
     const handleChange = (event) => {
         setInput(event.target.value);
     };
@@ -100,7 +104,7 @@ function Calculator() {
                     <button onClick={()=>handleClick('=')}>=</button>
                     <button onClick={() => handleClick('/')}>÷</button>
                     <button onClick={() => handleClick('ln')}>ln</button>
-                    <button onClick={() => handleClick('11')}>11</button>
+                    <button onClick={handleBackspace}>x</button>
                 </div>
             </div>
         </div>
