@@ -1,6 +1,6 @@
 import re
 from sympy import sympify, symbols
-from recurrence_relation import *
+from server.master import *
 
 n = symbols('n')
 
