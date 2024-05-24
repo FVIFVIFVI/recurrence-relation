@@ -1,10 +1,13 @@
 import re
-from sympy import sympify, symbols
+from sympy import sympify, symbols,SympifyError,simplify
 from master import *
 
 n = symbols('n')
 
 def distributing_expression(expression):
+    
+    expression = expression.replace('√', 'sqrt(')
+    expression = expression.replace('+', ' + ')
     try:
         components = re.findall(r'T\(n\)|T\(n\/[0-9]+\)|\d+\*T\(n\/\d+\)|[+-=]|\S+', expression)
         
@@ -36,25 +39,35 @@ def factoring_expr(raw_expression):
         raw_expression.remove("=")
     except:
        1
+    
     for i in raw_expression:
-        for i in raw_expression:
+        
+         tempi=i
          if "T" in  i:
             if i[0]=="T":
                 tempi = "1" + i 
             arr_of_tn.append(tempi)#צריך לוגיקה למקרה של +- לפני
             raw_expression.remove(i)
+    
     for index, value in enumerate(arr_of_tn):
         disassembled =  value.split("T")
         arr_of_tn.remove(value)#לבדוק במקרה של כפילות
-        temparr=[sympify(disassembled[0])]
+        
+        if "(" in disassembled[0]:##זה פלסטר מה יהיה אם זה שורש מוכפל לכן צריך לשנות בקליינט
+            print(disassembled[0])
+            disassembled[0]=disassembled[0]+")"
+            
+        temparr = [sympify(disassembled[0])]
+        temparr[0] = simplify(temparr[0])
+        print(temparr[0],2)
         try:
             disassembled[1] = disassembled[1].replace("n", "").replace("(", "").replace(")", "")
-    
+            print(disassembled)
             if disassembled[1][0]=="/":
              disassembled[1]= "1"+disassembled[1]
             temparr.append(sympify(disassembled[1])**-1)
-        except:#להוסיף חלוקה למקרי שגיאה כמו שזה לא שבר , להוסיף גם שגיאה
-            return False
+        except (IndexError, SympifyError, ValueError) as e:
+            return f"Error processing the expression '{value}': {str(e)}"
         a_b_f_dict.append(temparr)
     
     if raw_expression[0]=="+":#or "-":
@@ -78,8 +91,10 @@ def factoring_expr(raw_expression):
     return final
 def compute1(a):
  polished_expr=factoring_expr(distributing_expression(a))
+ print(polished_expr)
  master_re=master(polished_expr[0][0][0],polished_expr[0][0][1],polished_expr[1])
  master_re1=str(master_re)
  print(master_re1)
  return  master_re1
 
+compute1("√4T(n/2) + n")
