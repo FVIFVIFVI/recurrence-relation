@@ -37,10 +37,11 @@ def factoring_expr(raw_expression):
     except:
        1
     for i in raw_expression:
-        if "T" in  i:
+        for i in raw_expression:
+         if "T" in  i:
             if i[0]=="T":
-                i[0]="1"+i[0]
-            arr_of_tn.append(i)#צריך לוגיקה למקרה של +- לפני
+                tempi = "1" + i 
+            arr_of_tn.append(tempi)#צריך לוגיקה למקרה של +- לפני
             raw_expression.remove(i)
     for index, value in enumerate(arr_of_tn):
         disassembled =  value.split("T")
@@ -58,7 +59,6 @@ def factoring_expr(raw_expression):
     
     if raw_expression[0]=="+":#or "-":
      raw_expression.pop(0)
-    print(9)
     function_text=""
     # sympify
     print(raw_expression)
