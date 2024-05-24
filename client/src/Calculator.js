@@ -9,10 +9,6 @@ function Calculator() {
         setInput(input + value);
     };
 
-    const handleBackspace = () => {
-        setInput(input.slice(0, -1));
-    };
-
     const handleChange = (event) => {
         setInput(event.target.value);
     };
@@ -46,7 +42,7 @@ function Calculator() {
             if (data.error) {
                 setResult("Error"); // Display error if server returns an error
             } else {
-                setInput(data.result); // Display the computed result from server
+                setInput(data.result);(data.result); // Display the computed result from server
             }
         })
         .catch(error => {
@@ -63,7 +59,7 @@ function Calculator() {
                     value={input} 
                     onChange={handleChange} // Allow user to change the input
                 />
-             
+                {/* <div className="result">{result}</div> */}
             </div>
             <div className="button">
                 <div className="button-row">
@@ -104,7 +100,7 @@ function Calculator() {
                     <button onClick={()=>handleClick('=')}>=</button>
                     <button onClick={() => handleClick('/')}>÷</button>
                     <button onClick={() => handleClick('ln')}>ln</button>
-                    <button onClick={handleBackspace}>x</button>
+                    <button onClick={() => handleClick('11')}>11</button>
                 </div>
             </div>
         </div>
